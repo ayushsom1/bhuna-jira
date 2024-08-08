@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Full Information of project
 
-## Getting Started
+## Libraries that I have installed
 
-First, run the development server:
+- Next for app
+- Postgresql for db
+- prisma for ORM
+- shadCn-ui
+- next-auth for auth
+- react-beautiful-dnd for drag and drop
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Now setting up Prisma
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- we can use docker for postgres instance in our machine or we can use db provider neondb or avien
+- In dev using docker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  **Docker commands for postgres and setup postgresql**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  - for new docker instance or container -
+    - docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+  - To go inside the db container
+    - docker exec -it "PSQL-Container-ID" bash
+  - CLI for postgres using psql
+    - psql -h localhost -p 5432 -U postgres -W
+    - list dbs- "\dt"
+  - DB_URL:
+    - DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@POSTGRES_HOST/POSTGRES_DB"
 
-## Learn More
+- Now define schema for user and tasks
+- npx prisma migrate dev
+- npx prisma generate
 
-To learn more about Next.js, take a look at the following resources:
+- add into package.json :
+  - "prisma":
+    {
+    "seed": "ts-node prisma/seed.ts"
+    }
+  - create seed.ts file in prisma folder
+  - add seed data into seed.ts file
+- run npx prisma db seed
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- we use next-auth for this app
+- npm i next-auth
+- so the routes are as follows:
+  - /api/auth for handling signin and signout using next-auth
+  - /api/register for signup
+- then write the file for auth-config for credentialProviders
 
-## Deploy on Vercel
+  - here we are using nextauth with custom configuration
+  - in auth-config : providers[credentialsProvider[name, adapter, credentials, authorize], callbacks{jwt, session}, session:{strategy: 'jwt'}, pages: to redirect the signin signup request, secret: Nextauthsecret]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- then the session state is available throughout your application we have to ensure SessionProvider covers all the children.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- at last in components check for session await getServerSession(authOptions)
+- In buttons use router.push() and in link href use redirect()
+- create a folder types and file next-auth.d.ts and insert the code:
+  ```
+    import NextAuth from "next-auth"
+    declare module "next-auth" {
+    interface Session {
+        user: {
+            id: string;
+            name?: string | null;
+            email?: string | null;
+            image?: string | null;
+        }
+      }
+    }
+  ```
+
+## User Routes
+
+- don't need user id as such
+
+## Task Routes
+
+- /api/tasks/route.ts - POST and GET
+- /api/tasks/[id]/route.ts - PUT and DELETE
+
+# NOW start FRONT-END part
+  so first challenge in frontend is :-
+    - sidebar using shadcn in nextjs
+        - we are using sheet from shadcn here
+        - and using usehooks-ts library for bre built custom hooks
+     - so we will be building three components for sidebar
+       -sidebar-button
+       -sidebar-desktop
+       -sidebar-mobile
+       -sidebar (main component)
+
+       
