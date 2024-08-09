@@ -8,6 +8,7 @@ import {
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Button } from "./button";
+import { ModeToggle } from "./themeToggler";
 
 
 export function ProfileCorner() {
@@ -18,7 +19,7 @@ export function ProfileCorner() {
         .join('')
         .toUpperCase();
     return (
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row justify-between items-center">
             {status === 'authenticated' ? (
                 <div className="flex mx-3 items-center ">
                     <Avatar className="mx-2">
@@ -29,6 +30,8 @@ export function ProfileCorner() {
                 </div>) : (
                 <Button className="mx-2" variant="outline" >Hello Stranger!</Button>)
             }
+
+            <ModeToggle />
         </div>
     )
 }

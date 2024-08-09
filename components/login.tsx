@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import React, { useRef, useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { ModeToggle } from './ui/themeToggler';
 
 export default function Login() {
 
@@ -70,6 +71,7 @@ export default function Login() {
             <Card className="w-[350px] flex flex-col justify-center">
                 <CardHeader>
                     <CardTitle>Log In</CardTitle>
+                    <ModeToggle />
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit} method='post'>

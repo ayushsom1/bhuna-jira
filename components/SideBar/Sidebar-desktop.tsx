@@ -21,16 +21,15 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
                 <ProfileCorner />
                 <div className='mt-5'>
                     <div className='flex flex-col gap-1 w-full'>
-                        <div className='relative h-12'>
-                            <SidebarButton variant={'destructive'} className='absolute top-0 right-0 justify-center' onClick={async () => {
-                                const data = await signOut({ redirect: false, callbackUrl: '/' });
-                                router.push(data.url);
-                            }}>Sign out</SidebarButton>
-                        </div>
+                        <SidebarButton variant={'outline'} className='mt-2 justify-center hover:bg-red-600 hover:text-white border-red-500' onClick={async () => {
+                            const data = await signOut({ redirect: false, callbackUrl: '/' });
+                            router.push(data.url);
+                        }}>Sign out</SidebarButton>
                         {props.sidebarItems.links.map((link: any, index: any) => (
                             <Link key={index} href={link.href}>
+                                <hr></hr>
                                 <SidebarButton
-                                    variant={pathname === link.href ? 'secondary' : 'ghost'}
+                                    variant='ghost'
                                     icon={link.icon}
                                     className='w-full my-1'
                                 >
@@ -39,9 +38,10 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
                             </Link>
                         ))}
                         {props.sidebarItems.extras}
+
                     </div>
                 </div>
             </div>
-        </aside>
+        </aside >
     );
 }

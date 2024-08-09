@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useRouter } from 'next/navigation';
 import { useState, FormEvent } from 'react';
 import { toast } from 'sonner';
+import { ModeToggle } from './ui/themeToggler';
 
 export default function SignUp() {
 
@@ -59,6 +60,7 @@ export default function SignUp() {
             <Card className="w-[350px] flex flex-col justify-center">
                 <CardHeader>
                     <CardTitle>Sign Up</CardTitle>
+                    <ModeToggle />
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>

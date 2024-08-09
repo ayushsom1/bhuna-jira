@@ -78,13 +78,13 @@ export default function Task({ onEdit, onDelete, ...task }: TaskProps) {
             style={style}
             {...attributes}
             {...listeners}
-            className={`mb-2 drop-shadow-md hover:drop-shadow-xl hover:scale-105 cursor-grab ${getPriorityColor(task.priority)} ${isDragging ? 'shadow-lg' : ''}`}
+            className={`mb-2 drop-shadow-md shadow-slate-400 hover:drop-shadow-xl  hover:text-slate-500 cursor-grab ${getPriorityColor(task.priority)} ${isDragging ? 'shadow-lg' : ''}`}
         >
             <CardContent className="p-4">
                 <CardTitle className="mb-2 text-xl">{task.title}</CardTitle>
                 <CardDescription>{task.description}</CardDescription>
-                <Button variant="outline" className={`size- text-sm my-3 ${getPriorityColor(task.priority)}`}>{task.priority}</Button>
-                <p className="text-sm text-muted-foreground">
+                <Button variant="outline" className={`text-sm my-3 ${getPriorityColor(task.priority)}`}>{task.priority}</Button>
+                <p className="text-sm">
                     {new Date(task.deadline).toLocaleDateString()}
                 </p>
             </CardContent>

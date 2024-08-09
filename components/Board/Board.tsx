@@ -169,12 +169,12 @@ export default function Board() {
     }, [session, fetchTasks]);
 
     // for debouncing
-    const updateTaskStatusDebounced = useCallback(
-        debounce((taskId: number, newStatus: Status, newOrder: number) => {
-            updateTaskStatus(taskId, newStatus, newOrder);
-        }, 200),
-        []
-    );
+    // const updateTaskStatusDebounced = useCallback(
+    //     debounce((taskId: number, newStatus: Status, newOrder: number) => {
+    //         updateTaskStatus(taskId, newStatus, newOrder);
+    //     }, 200),
+    //     []
+    // );
 
     const handleDragEnd = async (event: any) => {
         const { active, over } = event;
@@ -265,7 +265,7 @@ export default function Board() {
 
     return (
         <ScrollArea className="h-full w-full">
-            <div className="flex justify-center space-x-4 p-4">
+            <div className="flex justify-center">
                 <DndContext
                     sensors={sensors}
                     collisionDetection={closestCorners}

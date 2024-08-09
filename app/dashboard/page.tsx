@@ -3,6 +3,11 @@ import { NEXT_AUTH } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Board from "@/components/Board/Board";
+import { DynamicGreeting } from "@/components/ui/DynamicGreeting";
+import FeatureCard from "@/components/Board/FeatureCard";
+import { CloudDownload, Share, Tags, Search } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import SearchBar from "@/components/Board/SearchBar";
 
 export default async function Home() {
     const session = await getServerSession(NEXT_AUTH);
@@ -12,43 +17,38 @@ export default async function Home() {
     }
 
     return (
-        <div className="flex h-screen">
-
+        <div className="flex h-screen overflow-hidden  mr-2">
             <Sidebar />
+            <ScrollArea className="flex-1">
+                <div className="flex flex-col p-4 space-y-4">
+                    <DynamicGreeting userName={session.user.name} />
 
-            <div className="flex-1 flex flex-col p-4 space-y-4">
-                <section className="bg-gray-800 p-4 h-10 rounded-lg">
-                </section>
+                    <section className=" grid grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-2 auto-rows-max w-full">
+                        <FeatureCard
+                            icon={Tags}
+                            title="Introducing tags"
+                            description="Easily categorize and find your notes by adding tags."
+                        />
+                        <FeatureCard
+                            icon={Share}
+                            title="Share Notes Instantly"
+                            description="Effortlessly share your notes with others via email or link."
+                        />
+                        <FeatureCard
+                            icon={CloudDownload}
+                            title="Access Anywhere"
+                            description="Sync your notes across all devices."
+                        />
+                    </section>
 
-                <section className="flex flex-row w-full gap-4">
-                    <div className="bg-gray-800 p-4 flex-1 rounded-lg">
-                        <h2 className="text-center">"Features"</h2>
-                    </div>
-                    <div className="bg-gray-800 p-4 flex-1 rounded-lg">
-                        <h2 className="text-center">"Features"</h2>
-                    </div>
-                    <div className="bg-gray-800 p-4 flex-1 rounded-lg">
-                        <h2 className="text-center">"Features"</h2>
-                    </div>
-                </section>
-
-                <section className="flex justify-between items-center bg-gray-800 rounded-lg p-2">
-                    <input
-                        type="text"
-                        placeholder="Search bar"
-                        className="flex mx- bg-transparent outline outline-2 outline-slate-400 p-1 rounded-sm"
-                    />
-                    <div className="flex mx-1">
-                        <div className="w-8 h-8 bg-gray-700 rounded ml-2"></div>
-                        <div className="w-8 h-8 bg-gray-700 rounded ml-2"></div>
-                        <div className="w-8 h-8 bg-gray-700 rounded ml-2"></div>
-                    </div>
-                </section>
-
-                <section className="flex-1 overflow-hidden">
-                    <Board />
-                </section>
-            </div>
-        </div>
+                    <section className="">
+                        <SearchBar />
+                    </section>
+                    <section>
+                        <Board />
+                    </section>
+                </div>
+            </ScrollArea>
+        </div >
     );
 }

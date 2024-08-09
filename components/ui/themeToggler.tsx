@@ -1,16 +1,28 @@
+"use client"
+
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
+import { useEffect, useState } from 'react'
 
 export function ModeToggle() {
     const { setTheme, theme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) {
+        return <div className="w-14 h-8" /> // Placeholder with same dimensions
+    }
 
     return (
         <motion.button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="relative inline-flex h-8 w-14 items-center rounded-full bg-slate-200 dark:bg-slate-700"
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            className=" relative inline-flex h-8 w-14 items-center rounded-full bg-slate-200 dark:bg-slate-700"
             animate={{
-                backgroundColor: theme === "light" ? "#e2e8f0" : "#334155"
+                backgroundColor: theme === 'light' ? '#e2e8f0' : '#334155'
             }}
             transition={{
                 duration: 0.3
@@ -30,18 +42,11 @@ export function ModeToggle() {
                     duration: 0.3
                 }}
             >
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                >
-                    {theme === "light" ? (
-                        <Sun className="h-5 w-5 text-yellow-500" />
-                    ) : (
-                        <Moon className="h-5 w-5 text-slate-700" />
-                    )}
-                </motion.div>
+                {theme === "light" ? (
+                    <Sun className="h-5 w-5 text-yellow-500" />
+                ) : (
+                    <Moon className="h-5 w-5 text-slate-700" />
+                )}
             </motion.span>
         </motion.button>
     )

@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useDroppable } from '@dnd-kit/core';
 import AddTaskButton from './AddTaskButton';
 import Task from './Task';
+import { Separator } from "@radix-ui/react-select";
 
 enum Priority {
     LOW = "LOW",
@@ -43,7 +44,7 @@ export default function Column({ id, title, tasks, onCreateTask, onEditTask, onD
 
     return (
         <Card ref={setNodeRef} className="w-full">
-            <CardHeader>
+            <CardHeader className="flex flex-row justify-center">
                 <CardTitle>{title}</CardTitle>
             </CardHeader>
             <CardContent>

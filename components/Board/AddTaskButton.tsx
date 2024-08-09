@@ -20,7 +20,7 @@ const AddTaskButton: React.FC<AddTaskButtonProps> = ({ status }) => {
         setIsTaskSheetOpen(true);
     }
     return (
-        <Button onClick={handleClick} variant="outline" className="w-full mt-2 text-muted-foreground hover:text-foreground transition-colors" >
+        <Button onClick={handleClick} variant="default" className="w-full mt-2 transition-colors" >
             <Plus className="w-4 h-4 mr-2" />
             Add Task
         </Button>

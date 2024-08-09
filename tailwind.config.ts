@@ -2,6 +2,11 @@ import type { Config } from "tailwindcss"
 
 const config = {
   darkMode: ["class"],
+  boxShadow: {
+    'white-sm': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
+    'white-md': '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+    'white-lg': '0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05)',
+  },
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
