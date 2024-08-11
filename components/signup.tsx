@@ -56,7 +56,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className='flex h-screen flex-col items-center justify-center'>
+        <div className='flex h-screen drop-shadow-md  flex-col items-center justify-center'>
             <Card className="w-[350px] flex flex-col justify-center">
                 <CardHeader>
                     <CardTitle>Sign Up</CardTitle>

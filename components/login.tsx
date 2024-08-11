@@ -67,7 +67,7 @@ export default function Login() {
 
     }
     return (
-        <div className='flex flex-col h-screen items-center justify-center'>
+        <div className='flex flex-col drop-shadow-md  h-screen items-center justify-center'>
             <Card className="w-[350px] flex flex-col justify-center">
                 <CardHeader>
                     <CardTitle>Log In</CardTitle>
@@ -106,8 +106,6 @@ export default function Login() {
                         <Button type='submit' className='w-full' disabled={checkingPassword}>LogIn to your account</Button>
                     </form>
                 </CardContent>
-
-
             </Card>
             <div>Don&apos;t have an account!<Button variant="link" onClick={() => router.push('/signup')}>Sign Up</Button></div>
         </div>
