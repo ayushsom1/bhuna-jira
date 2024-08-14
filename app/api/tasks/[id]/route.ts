@@ -3,8 +3,18 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
+<<<<<<< HEAD
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     const session = await getServerSession(NEXT_AUTH);
+||||||| 1dcf66b
+export async function PUT(req: NextResponse, { params }: { params: { id: string } }) {
+    const session = await getServerSession(NEXT_AUTH)
+
+=======
+export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+    const session = await getServerSession(NEXT_AUTH)
+
+>>>>>>> c634c72d2b6642dedea72faa599bbdc8852e4d65
     if (!session) {
         return NextResponse.json({
             message: "Not Authorized",
